@@ -13,6 +13,7 @@ Raspberry pi 3B+ 5v	-------		Zodiac Tri POS
 
 Raspberry pi 3B+ 0v	-------		Zodiac Tri 0V
 
+- On the Zodiac Tri, select Jandy Rev L/M as remote controller
 
 - Check if the USB RS485 converter is recognized:
 	Open a LXTerminal and run ls /dev/tty* to find the device name, and edit webserver.py 
