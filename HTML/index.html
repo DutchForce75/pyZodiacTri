@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>Zodiac TRI</title>
+	<link rel="stylesheet" type="text/css" href="relay.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.4, maximum-scale=1.4, user-scalable=no">
+
+</head>
+<body bgcolor="#000000" , text="#FFFFFF">
+<div align="center">
+
+<script>
+   window.addEventListener("load", function(){
+       if(document.height <= window.outerHeight)
+       {
+           document.body.style.height = (window.outerHeight + 50) + 'px';
+           setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+       }
+       else
+       {
+           setTimeout( function(){ window.scrollTo(0, 1); }, 0 );
+       }
+   });
+</script>
+
+<script type="text/javascript">
+function ToggleOnOff() {
+	request = "toggleConnection";
+	xml_dmx= new XMLHttpRequest();
+	if (xml_dmx==null)
+	{	alert ("Browser does not support this HTTP Request");
+		return;
+	}	
+	xml_dmx.open("GET",request,true);
+	xml_dmx.send(null);
+}
+
+function Slider(value) {
+	request = "setChlorine\?pct=" + value;
+	if (value == 101)
+	{ document.getElementById('textInput').value="boost";
+	}
+	else if (value == 0)
+	{	document.getElementById('textInput').value="off";
+	}
+	else
+	{	document.getElementById('textInput').value= value;
+	}
+	xml_dmx= new XMLHttpRequest();
+	if (xml_dmx==null)
+	{	alert ("Browser does not support this HTTP Request");
+		return;
+	}	
+	xml_dmx.open("GET",request,true);
+	xml_dmx.send(null);
+}
+
+</script>
+
+<b><font size="6">RPI Zodiac</font></b>
+<br>
+%s<br>
+Memory usage: %s<br>
+<br>
+<table border="0" align="left" valign="middle" >
+<tr>
+		<table border="0" >
+		<tr>
+			<td><p style="text-align:left;">Connect</p></td>
+			<td width =10></td>
+			<td><div class="onoffswitch">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="10"  %s onchange="ToggleOnOff();">
+				<label class="onoffswitch-label" for="10">
+						<span class="onoffswitch-inner"></span>
+						<span class="onoffswitch-switch"></span>
+				</label>
+				</div>
+			</td>
+		</tr>
+		<tr></tr>
+		<tr>
+			<td><p style="text-align:left;">Chloric</p></td>
+			<td width =10></td>
+			<td><input id="11" type ="range" min ="0" max="101" step="1" value="%s"  STYLE=" color:#FF00FF;background-color:#333333;position:relative;top:0px;left:0px" onchange="Slider(this.value);"></td>
+			<td><input type="text" id="textInput" value="%s" size="5" STYLE="color:#FFFFFF; background-color:#000000; font-size:15;position:relative;top:-1px;left:0px" readonly></td>
+		</tr>
+		<tr></tr>
+		<tr>
+			<td><p style="text-align:left;">Salt level</p></td>
+			<td width =10></td>
+			<td>%s</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><p style="text-align:left;">Error</p></td>
+			<td width =10></td>
+			<td>%s</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><p style="text-align:left;">Add salt</p></td>
+			<td width =10></td>
+			<td>%s</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><p style="text-align:left;">Link</p></td>
+			<td width =10></td>
+			<td>%s</td>
+			<td></td>
+		</tr>
+
+</tr>
+</div>
+</body>
+</html>
+
+
