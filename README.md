@@ -6,9 +6,13 @@ These scripts are tested on a raspberry pi 3B+ running Stretch and a low cost Se
 The converter is connected to the Zodiac PSU board using the Comms section pins 0V POS A B.
 
 Sertronics RS485 A	-------		Zodiac Tri A
+
 Sertronics RS485 B	------- 	Zodiac Tri B
+
 Raspberry pi 3B+ 5v	-------		Zodiac Tri POS
+
 Raspberry pi 3B+ 0v	-------		Zodiac Tri 0V
+
 
 - Check if the USB RS485 converter is recognized:
 	Open a LXTerminal and run ls /dev/tty* to find the device name, and edit webserver.py 
