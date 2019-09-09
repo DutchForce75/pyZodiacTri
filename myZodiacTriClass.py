@@ -158,9 +158,7 @@ class myZodiacTriClass(AqualinkInterface):
 	def __init__(self, theRS485device, debugData=False):	
 		AqualinkInterface.__init__(self, "RS485", theRS485device, debugData)		
 		self.ID 	= '\x50'
-		self.ID_CHEMLINK = '\x82'
 		self.CMD_PROBE 	= '\x00'
-		self.CMD_GETPH 	= '\x01'
 		self.CMD_SETPCT = '\x11'
 		self.CMD_GETID 	= '\x14'
 		self.chloricpct	= 100
@@ -180,8 +178,8 @@ class myZodiacTriClass(AqualinkInterface):
 				if version == 0x16:
 					self.errorstr = ""
 					errorslist = ("No flow", "Low salt", "High Salt", "Clean cell", "High current", "Low voltage", "Low watertemp", "Check PCB")
-					self.saltlevel 		= ord(args[0])	#ord(statusstr[0])
-					self.error 		= ord(args[1])	#ord(statusstr[1])
+					self.saltlevel 		= ord(args[0])*100	
+					self.error 		= ord(args[1])	
 					self.addsalt		= ord(args[2]) + (ord(args[3])<<8)
 					if self.error:
 						for i in range(0, len(errorslist)-1):
@@ -189,13 +187,10 @@ class myZodiacTriClass(AqualinkInterface):
 							if self.error & mask:
 								self.errorstr =self.errorstr + "-" + errorslist[i] + " "
 		else:
-			self.saltlevel 		= "-"
-			self.error 		= "-"
-			self.addsalt		= "-"
-			
+			self.saltlevel 		= 0
+			self.errorstr 		= "-"
+			self.addsalt		= 0
 
-				
-	
 
 	def sendCmdProbe(self):
 		""" sends 50:00 returns 00:01:00:00"""	
@@ -217,6 +212,4 @@ class myZodiacTriClass(AqualinkInterface):
 		""" sends 50:14:01 returns 00:03:01:string"""
 		self.sendMsg((self.ID, self.CMD_GETID , '\x01'))
 	
-	def sendCmdProbeChemlink(self):
-		self.sendMsg((self.ID, self.CMD_PROBE ,""))
-		self.sendMsg((self.ID_CHEMLINK, self.CMD_GETPH ,""))
+
