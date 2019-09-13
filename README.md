@@ -35,7 +35,7 @@ PSU RPI		 0v	-------		Zodiac Tri 0V
 
 - If 'Status' is not showing 'connected', then there is not response from the Zodiac and the settings won't be applied.
 
-- When connected the little connection icon changes in the right upper corner of the Zodiac Tri's display
+- When connected the little connection icon changes to '‡' in the right upper corner of the Zodiac Tri's display
 
 - Data is not pushed from the webserver to the webclient, so manual webclient refresh is needed to have the last status.
 
